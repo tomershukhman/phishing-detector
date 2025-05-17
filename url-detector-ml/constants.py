@@ -1,0 +1,282 @@
+import json
+import os
+# Common legitimate TLDs
+COMMON_TLDS = {
+    'com', 'org', 'net', 'edu', 'gov', 'mil', 'int', 'io', 'co', 
+    'us', 'uk', 'ca', 'au', 'de', 'fr', 'jp', 'cn', 'br', 'it', 
+    'ru', 'nl', 'es', 'se', 'no', 'fi', 'dk', 'ch', 'at', 'be', 
+    'il', 'in', 'kr', 'sg', 'mx', 'nz', 'za'
+}
+
+# Country code TLDs with restricted registration policies (often more legitimate)
+RESTRICTED_CCTLDS = {
+    'il', 'gov', 'edu', 'mil', 'int', 'eu', 'museum', 'aero',
+    'coop', 'jobs', 'travel', 'mobi', 'pro', 'tel', 'asia'
+}
+
+# Load common terms used in government/academic/official websites
+OFFICIAL_TERMS = {
+    'government', 'official', 'ministry', 'department', 'admin',
+    'national', 'federal', 'state', 'agency', 'commission', 'bureau',
+    'council', 'institute', 'authority', 'committee', 'office',
+    'defense', 'defence', 'military', 'army', 'navy', 'air', 'force',
+    'intelligence', 'security', 'police', 'justice', 'court', 'treasury',
+    'health', 'education', 'university', 'research', 'science', 'technology',
+    'idf', 'gov', 'congress', 'senate', 'parliament', 'president', 
+    'minister', 'chancellor', 'embassy', 'consulate', 'diplomatic',
+    'organization', 'organisation', 'union', 'nations', 'bank', 'revenue'
+}
+
+# Common press release, news, and media words in legitimate URLs
+MEDIA_TERMS = {
+    'news', 'press', 'release', 'releases', 'media', 'statement',
+    'statements', 'announcement', 'announcements', 'briefing',
+    'briefings', 'article', 'articles', 'blog', 'blogs', 'post',
+    'posts', 'update', 'updates', 'publication', 'publications',
+    'report', 'reports', 'story', 'stories', 'coverage', 'event',
+    'events', 'war', 'conflict', 'peace', 'treaty', 'attack',
+    'operation', 'mission', 'campaign', 'crisis'
+}
+
+# Extended list of common multi-level TLDs to improve domain extraction
+MULTI_LEVEL_TLDs = {
+    'co.uk', 'com.au', 'co.nz', 'co.jp', 'org.uk', 'gov.uk', 'ac.uk',
+    'net.au', 'com.br', 'com.cn', 'com.tw', 'com.hk', 'co.il', 'co.in',
+    'co.za', 'co.kr', 'co.th', 'com.sg', 'com.my', 'com.tr', 'org.au',
+    'edu.au', 'gov.au', 'org.nz', 'edu.sg', 'gov.sg', 'ac.jp', 'ne.jp',
+    'co.id', 'com.mx', 'com.ar', 'com.co', 'com.ve', 'com.pe', 'com.ec'
+}
+
+# Dictionary words for checking if domain is a meaningful word
+DICTIONARY_WORDS = {
+    'about', 'account', 'across', 'addition', 'adjustment', 'advertisement',
+    'after', 'again', 'against', 'agreement', 'almost', 'among', 'amount',
+    'amusement', 'angle', 'angry', 'animal', 'answer', 'apparatus', 'apple',
+    'approval', 'arch', 'argument', 'army', 'attack', 'attempt', 'attention',
+    'attraction', 'authority', 'automatic', 'awake', 'baby', 'back', 'balance',
+    'ball', 'band', 'base', 'basin', 'basket', 'bath', 'beautiful', 'because',
+    'become', 'before', 'behaviour', 'belief', 'bell', 'bent', 'berry', 'between',
+    'bird', 'birth', 'bite', 'bitter', 'black', 'blade', 'blood', 'blow', 'blue',
+    'board', 'boat', 'body', 'boiling', 'bone', 'book', 'boot', 'bottle', 'brain',
+    'brake', 'branch', 'brass', 'bread', 'breath', 'brick', 'bridge', 'bright',
+    'broken', 'brother', 'brown', 'brush', 'bucket', 'building', 'bulb', 'burn',
+    'burst', 'business', 'butter', 'button', 'cake', 'camera', 'canvas', 'card',
+    'care', 'carriage', 'cart', 'cause', 'certain', 'chain', 'chalk', 'chance',
+    'change', 'cheap', 'cheese', 'chemical', 'chest', 'chief', 'chin', 'church',
+    'circle', 'clean', 'clear', 'clock', 'cloth', 'cloud', 'coal', 'coat', 'cold',
+    'collar', 'colour', 'comb', 'come', 'comfort', 'committee', 'common', 'company',
+    'comparison', 'competition', 'complete', 'complex', 'condition', 'connection',
+    'conscious', 'control', 'cook', 'copper', 'copy', 'cord', 'cork', 'cotton',
+    'cough', 'country', 'cover', 'crack', 'credit', 'crime', 'cruel', 'crush',
+    'current', 'curtain', 'curve', 'cushion', 'damage', 'danger', 'dark', 'daughter',
+    'dear', 'death', 'debt', 'decision', 'deep', 'degree', 'delicate', 'dependent',
+    'design', 'desire', 'destruction', 'detail', 'development', 'different', 'digestion',
+    'direction', 'dirty', 'discovery', 'discussion', 'disease', 'disgust', 'distance',
+    'distribution', 'division', 'door', 'doubt', 'down', 'drain', 'drawer', 'dress',
+    'drink', 'driving', 'drop', 'dust', 'early', 'earth', 'east', 'edge', 'education',
+    'effect', 'elastic', 'electric', 'engine', 'enough', 'equal', 'error', 'even',
+    'event', 'ever', 'every', 'example', 'exchange', 'existence', 'expansion', 'experience',
+    'expert', 'face', 'fact', 'fall', 'false', 'family', 'farm', 'father', 'fear',
+    'feather', 'feeble', 'feeling', 'female', 'fertile', 'fiction', 'field', 'fight',
+    'finger', 'fire', 'first', 'fish', 'fixed', 'flag', 'flame', 'flat', 'flight',
+    'floor', 'flower', 'fold', 'food', 'foolish', 'foot', 'force', 'fork', 'form',
+    'forward', 'fowl', 'frame', 'free', 'frequent', 'friend', 'from', 'front', 'fruit',
+    'full', 'future', 'garden', 'general', 'girl', 'give', 'glass', 'glove', 'goat',
+    'gold', 'good', 'government', 'grain', 'grass', 'great', 'green', 'grey', 'grip',
+    'group', 'growth', 'guide', 'guitar', 'hair', 'hammer', 'hand', 'hanging', 'happy',
+    'harbour', 'hard', 'harmony', 'hate', 'have', 'head', 'healthy', 'hear', 'hearing',
+    'heart', 'heat', 'help', 'high', 'history', 'hole', 'hollow', 'hook', 'hope', 'horn',
+    'horse', 'hospital', 'hour', 'house', 'humour', 'idea', 'important', 'impulse',
+    'increase', 'industry', 'insect', 'instrument', 'insurance', 'interest', 'invention',
+    'iron', 'island', 'jelly', 'jewel', 'join', 'journey', 'judge', 'jump', 'keep',
+    'kettle', 'kick', 'kind', 'kiss', 'knee', 'knife', 'knot', 'knowledge', 'land',
+    'language', 'last', 'late', 'laugh', 'lead', 'leaf', 'learning', 'leather', 'left',
+    'letter', 'level', 'library', 'lift', 'light', 'like', 'limit', 'line', 'linen',
+    'liquid', 'list', 'little', 'living', 'lock', 'long', 'look', 'loose', 'loss', 'loud',
+    'love', 'machine', 'make', 'male', 'manager', 'mark', 'market', 'married', 'mass',
+    'match', 'material', 'meal', 'measure', 'meat', 'medical', 'meeting', 'memory',
+    'metal', 'middle', 'military', 'milk', 'mind', 'mine', 'minute', 'mist', 'mixed',
+    'money', 'monkey', 'month', 'moon', 'morning', 'mother', 'motion', 'mountain',
+    'mouth', 'move', 'much', 'muscle', 'music', 'nail', 'name', 'narrow', 'nation',
+    'natural', 'near', 'necessary', 'neck', 'need', 'needle', 'nerve', 'news', 'night',
+    'noise', 'normal', 'north', 'nose', 'note', 'number', 'observation', 'offer', 'office',
+    'only', 'open', 'operation', 'opinion', 'opposite', 'orange', 'order', 'organization',
+    'ornament', 'other', 'oven', 'over', 'owner', 'page', 'pain', 'paint', 'paper',
+    'parallel', 'parcel', 'part', 'past', 'paste', 'payment', 'peace', 'pencil', 'person',
+    'physical', 'picture', 'pipe', 'place', 'plane', 'plant', 'plate', 'play', 'please',
+    'pleasure', 'plough', 'pocket', 'point', 'poison', 'polish', 'political', 'poor',
+    'porter', 'position', 'possible', 'potato', 'powder', 'power', 'present', 'price',
+    'print', 'prison', 'private', 'probable', 'process', 'produce', 'profit', 'property',
+    'prose', 'protest', 'public', 'pull', 'pump', 'punishment', 'purpose', 'push', 'quality',
+    'question', 'quick', 'quiet', 'quite', 'rail', 'rain', 'range', 'rate', 'reaction',
+    'reading', 'ready', 'reason', 'receipt', 'record', 'regret', 'regular', 'relation',
+    'religion', 'representative', 'request', 'respect', 'responsible', 'rest', 'reward',
+    'rhythm', 'rice', 'right', 'ring', 'river', 'road', 'roll', 'roof', 'room', 'root',
+    'rough', 'round', 'rule', 'safe', 'sail', 'salt', 'same', 'sand', 'scale', 'school',
+    'science', 'scissors', 'screw', 'search', 'seat', 'second', 'secret', 'secretary',
+    'seed', 'seem', 'selection', 'self', 'send', 'sense', 'separate', 'serious', 'servant',
+    'shade', 'shake', 'shame', 'sharp', 'sheep', 'shelf', 'ship', 'shirt', 'shock', 'shoe',
+    'short', 'shut', 'side', 'sign', 'silk', 'silver', 'simple', 'sister', 'size', 'skin',
+    'google', 'microsoft', 'apple', 'amazon', 'facebook', 'twitter', 'netflix', 'cnn',
+    'youtube', 'gmail', 'yahoo', 'walmart', 'drive', 'search', 'mail', 'news', 'login'
+}
+
+SUSPICIOUS_KEYWORDS = [
+    "login",
+    "signin",
+    "bank",
+    "account",
+    "update",
+    "verify",
+    "secure",
+    "password",
+    "admin",
+    "security",
+    "pay",
+    "wallet",
+    "authenticate",
+    "recover",
+    "unlock",
+    "confirm",
+]
+SUSPICIOUS_EXTENSIONS = [
+    ".exe",
+    ".scr",
+    ".zip",
+    ".rar",
+    ".7z",
+    ".tar",
+    ".gz",
+    ".bat",
+    ".cmd",
+    ".js",
+    ".jar",
+    ".vbs",
+    ".msi",
+    ".apk",
+    ".ps1",
+]
+URL_SHORTENERS = [
+    "bit.ly",
+    "goo.gl",
+    "t.co",
+    "tinyurl.com",
+    "is.gd",
+    "cli.gs",
+    "pic.gd",
+    "DwarfURL.com",
+    "ow.ly",
+    "yfrog.com",
+    "migre.me",
+    "ff.im",
+    "tiny.cc",
+    "url4.eu",
+    "tr.im",
+    "twit.ac",
+    "su.pr",
+    "twurl.nl",
+    "snipurl.com",
+    "short.to",
+    "BudURL.com",
+    "ping.fm",
+    "post.ly",
+    "Just.as",
+    "bkite.com",
+    "snipr.com",
+    "fic.kr",
+    "loopt.us",
+    "doiop.com",
+    "tinyurl.com",
+    "short.ie",
+    "kl.am",
+    "wp.me",
+    "rubyurl.com",
+    "om.ly",
+    "to.ly",
+    "bit.do",
+    "lnkd.in",
+    "db.tt",
+    "qr.ae",
+    "adf.ly",
+    "goo.gl",
+    "bitly.com",
+    "cur.lv",
+    "tinyurl.com",
+    "ow.ly",
+    "bit.ly",
+    "ity.im",
+    "q.gs",
+    "is.gd",
+    "po.st",
+    "bc.vc",
+    "twitthis.com",
+    "u.to",
+    "j.mp",
+    "buzurl.com",
+    "cutt.us",
+    "u.bb",
+    "yourls.org",
+    "x.co",
+    "prettylinkpro.com",
+    "scrnch.me",
+    "filoops.info",
+    "vzturl.com",
+    "qr.net",
+    "1url.com",
+    "tweez.me",
+    "v.gd",
+    "tr.im",
+    "link.zip.net",
+]
+
+COMMON_PATTERNS = [
+    "home",
+    "index",
+    "about",
+    "contact",
+    "help",
+    "faq",
+    "login",
+    "register",
+    "products",
+    "services",
+    "blog",
+    "news",
+    "support",
+]
+
+LANGUAGE_CODES = {
+    "en",
+    "fr",
+    "de",
+    "es",
+    "it",
+    "ru",
+    "zh",
+    "ja",
+    "ar",
+    "pt",
+    "nl",
+    "he",
+}
+
+CONTENT_INDICATORS = [
+    "news",
+    "about",
+    "contact",
+    "press",
+    "media",
+    "blog",
+    "article",
+    "site",
+    "mini-site",
+    "release",
+]
+
+BRAND_NAMES = ["paypal", "amazon", "google", "facebook"]
+
+
+# Load popular domains from the top-100k.json file
+with open('data/top-100k.json', 'r') as f:
+    POPULAR_DOMAINS = json.load(f)
+

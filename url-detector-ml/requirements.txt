@@ -1,0 +1,35 @@
+# Phishing Detection System Requirements
+# Core dependencies
+numpy
+pandas
+scikit-learn
+joblib
+
+# Feature extraction
+tldextract
+urllib3
+requests
+
+# Data processing
+tqdm
+
+# Performance analysis
+matplotlib
+seaborn
+
+# URL parsing and network utilities
+dnspython
+
+# Logging
+loguru
+
+# Testing
+pytest
+
+# Optional: Web interface dependencies
+# flask>=2.0.0
+# flask-restful>=0.3.9
+psutil
+
+tabulate
+openpyxl
