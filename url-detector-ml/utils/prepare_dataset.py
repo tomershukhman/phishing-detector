@@ -50,11 +50,6 @@ def balance_datasets():
             'after_normalization': 0,
             'after_deduplication': 0
         },
-        'old_balanced': {
-            'benign': 0,
-            'phishing': 0,
-            'total': 0
-        },
         'final': {
             'benign': 0,
             'phishing': 0,
@@ -159,84 +154,29 @@ def balance_datasets():
     else:
         raise ValueError("No valid phishing data found")
         
-    # Load old balanced URLs dataset if it exists
-    old_balanced_df = None
-    try:
-        print("Loading old balanced URLs dataset...")
-        old_balanced_df = pd.read_csv('data/balanced_urls_old.csv')
-        print(f"Old balanced dataset shape: {old_balanced_df.shape}")
-        print(f"Old balanced columns: {old_balanced_df.columns}")
-        
-        # Ensure it has the required columns
-        if 'url' not in old_balanced_df.columns:
-            if 'URL' in old_balanced_df.columns:
-                old_balanced_df.rename(columns={'URL': 'url'}, inplace=True)
-            else:
-                print("Warning: Could not find URL column in old balanced dataset")
-                old_balanced_df = None
-                
-        # Ensure it has result and label columns    
-        if old_balanced_df is not None:
-            # Add result column if not present
-            if 'result' not in old_balanced_df.columns:
-                # Try to infer from label column
-                if 'label' in old_balanced_df.columns:
-                    old_balanced_df['result'] = old_balanced_df['label'].apply(
-                        lambda x: 1 if x == 'phishing' else 0)
-                else:
-                    print("Warning: Could not determine results for old balanced dataset")
-                    old_balanced_df = None
-                    
-            # Add label column if not present
-            if old_balanced_df is not None and 'label' not in old_balanced_df.columns:
-                old_balanced_df['label'] = old_balanced_df['result'].apply(
-                    lambda x: 'phishing' if x == 1 else 'benign')
-                    
-        # Track stats for old balanced dataset
-        if old_balanced_df is not None:
-            stats['old_balanced']['total'] = old_balanced_df.shape[0]
-            stats['old_balanced']['benign'] = len(old_balanced_df[old_balanced_df['result'] == 0])
-            stats['old_balanced']['phishing'] = len(old_balanced_df[old_balanced_df['result'] == 1])
-            
-            print(f"Old balanced dataset loaded with {stats['old_balanced']['total']} entries:")
-            print(f"  - Benign: {stats['old_balanced']['benign']}")
-            print(f"  - Phishing: {stats['old_balanced']['phishing']}")
-        else:
-            print("Warning: Old balanced dataset could not be loaded or processed")
-            
-    except FileNotFoundError:
-        print("Warning: data/balanced_urls_old.csv not found, continuing without it.")
-    except Exception as e:
-        print(f"Error loading old balanced dataset: {e}")
+
         
     # Normalize URLs for all datasets
     print("Extracting hostnames...")
     benign_df['hostname'] = benign_df['url'].apply(extract_hostname)
     combined_phishing_df['hostname'] = combined_phishing_df['url'].apply(extract_hostname)
     
-    if old_balanced_df is not None:
-        print("Extracting hostnames for old balanced dataset...")
-        old_balanced_df['hostname'] = old_balanced_df['url'].apply(extract_hostname)
+
 
     print("normalizing urls...")
     benign_df['url'] = benign_df['url'].apply(normalize_url)
     combined_phishing_df['url'] = combined_phishing_df['url'].apply(normalize_url)
     
-    if old_balanced_df is not None:
-        print("Normalizing URLs for old balanced dataset...")
-        old_balanced_df['url'] = old_balanced_df['url'].apply(normalize_url)
+
 
     # Remove rows with None hostnames
     benign_df = benign_df.dropna(subset=['hostname'])
     combined_phishing_df = combined_phishing_df.dropna(subset=['hostname'])
     
-    if old_balanced_df is not None:
-        old_balanced_df = old_balanced_df.dropna(subset=['hostname'])
 
     print(f"Benign dataset after normalization: {benign_df.shape}")
     print(f"Phishing dataset after normalization: {combined_phishing_df.shape}")
-    if old_balanced_df is not None:
-        print(f"Old balanced dataset after normalization: {old_balanced_df.shape}")
+
 
     # Store after normalization counts
     stats['benign']['after_normalization'] = benign_df.shape[0]
@@ -257,21 +197,11 @@ def balance_datasets():
     # Use all entries from both datasets
     print("Using all entries from both datasets...")
 
-    # Combine the datasets
-    print("Combining data...")
-    if old_balanced_df is not None:
-        combined_df = pd.concat([benign_df, combined_phishing_df, old_balanced_df])
-        print(f"Combined with old balanced dataset. New shape: {combined_df.shape}")
-    else:
-        combined_df = pd.concat([benign_df, combined_phishing_df])
+
+    
+    combined_df = pd.concat([benign_df, combined_phishing_df])
         
-    # Remove duplicates based on hostname across the entire dataset
-    if old_balanced_df is not None:
-        print("Removing duplicates across the entire combined dataset...")
-        original_size = combined_df.shape[0]
-        combined_df = combined_df.drop_duplicates(subset=['hostname'])
-        removed = original_size - combined_df.shape[0]
-        print(f"Removed {removed} duplicates from the combined dataset")
+
 
     # Drop the hostname column from the output
     print("Preparing final output...")
