@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Detector</title>
+  <link rel="stylesheet" href="popup.css">
+  <style>
+    /* Add some inline styles as fallback if popup.css fails to load */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { width: 350px; min-height: 400px; padding: 15px; }
+    .header { display: flex; align-items: center; justify-content: space-between; }
+    .loading-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; }
+    .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Phishing Detector</h1>
+      <div class="status-indicator" id="statusIndicator"></div>
+    </header>
+
+    <div class="content">
+      <div id="loadingContainer" class="loading-container">
+        <div class="spinner"></div>
+        <p>Analyzing page...</p>
+        <p id="loadingMessage" style="font-size: 0.8em; color: #666; margin-top: 10px;">Initializing...</p>
+      </div>
+      
+      <div id="resultContainer" class="result-container hidden">
+        <div class="result-header">
+          <div id="resultStatus" class="result-status"></div>
+          <div id="confidenceScore" class="confidence-score"></div>
+        </div>
+        
+        <div class="url-container">
+          <p class="url-label">URL:</p>
+          <p id="analyzedUrl" class="analyzed-url"></p>
+        </div>
+        
+        <div class="tabs">
+          <button class="tab-button active" data-tab="summary">Summary</button>
+          <button class="tab-button" data-tab="url-features">URL Features</button>
+          <button class="tab-button" data-tab="dom-features">DOM Features</button>
+        </div>
+        
+        <div class="tab-content">
+          <div id="summaryTab" class="tab-panel active">
+            <div class="summary-container">
+              <div id="summarySafeContainer" class="summary-safe hidden">
+                <h3>This site appears safe</h3>
+                <p>No significant phishing indicators were detected.</p>
+              </div>
+              
+              <div id="summaryWarningContainer" class="summary-warning hidden">
+                <h3>Warning: Potential Phishing Site</h3>
+                <p>We've detected several suspicious indicators:</p>
+                <ul id="warningList" class="warning-list"></ul>
+              </div>
+            </div>
+          </div>
+          
+          <div id="urlFeaturesTab" class="tab-panel">
+            <h3>URL Analysis</h3>
+            <div class="features-list-container">
+              <h4>Top contributing features:</h4>
+              <ul id="topFeatureslist" class="features-list"></ul>
+            </div>
+            
+            <div class="url-score-container">
+              <div class="score-label">URL Safety Score:</div>
+              <div id="urlScore" class="score-value"></div>
+            </div>
+          </div>
+          
+          <div id="domFeaturesTab" class="tab-panel">
+            <h3>Page Content Analysis</h3>
+            <div class="features-list-container">
+              <h4>Detected page features:</h4>
+              <ul id="domFeaturesList" class="features-list"></ul>
+            </div>
+            
+            <div class="dom-score-container">
+              <div class="score-label">Content Safety Score:</div>
+              <div id="domScore" class="score-value"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="errorContainer" class="error-container hidden">
+        <div class="error-icon">⚠️</div>
+        <h3>Analysis Error</h3>
+        <p id="errorMessage">Unable to analyze this page.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="action-buttons">
+        <button id="refreshButton" class="refresh-button">Refresh Analysis</button>
+        <button id="reportButton" class="report-button">Report Site</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+  
+  <!-- Fallback non-module script that will run even if module loading fails -->
+  <script>
+    // Update loading message periodically to show the extension is still working
+    let loadingCount = 0;
+    const loadingMessages = [
+      "Initializing...",
+      "Loading model data...",
+      "Preparing analysis...",
+      "Almost ready...",
+      "Just a moment longer...",
+      "Setting up detection...",
+      "Loading detection modules..."
+    ];
+    
+    const loadingInterval = setInterval(() => {
+      const loadingMsg = document.getElementById('loadingMessage');
+      if (loadingMsg) {
+        loadingMsg.textContent = loadingMessages[loadingCount % loadingMessages.length];
+        loadingCount++;
+      }
+    }, 2000);
+    
+    // If nothing happens after 15 seconds, show a friendly error
+    setTimeout(() => {
+      clearInterval(loadingInterval);
+      
+      const loadingContainer = document.getElementById('loadingContainer');
+      const errorContainer = document.getElementById('errorContainer');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      if (loadingContainer && errorContainer && errorMessage) {
+        if (!loadingContainer.classList.contains('hidden')) {
+          loadingContainer.classList.add('hidden');
+          errorContainer.classList.remove('hidden');
+          errorMessage.textContent = "The extension is taking longer than expected. Please try reloading the page or reinstalling the extension.";
+        }
+      }
+    }, 15000);
+  </script>
+</body>
+</html>
