@@ -151,6 +151,54 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
       break;
 
+    case "TEST":
+      // Handle performance data from phishing analysis
+      if (message.data) {
+        logBackground("Performance data received", {
+          url: message.data.url,
+          groupId: message.data.groupId,
+          isPhishing: message.data.isPhishing,
+          responseTimeMs: message.data.responseTimeMs,
+          heapChangeBytes: message.data.heapChangeBytes
+        });
+        
+        // Send data over HTTP to the verdict endpoint
+        const data = message.data;
+        fetch('http://127.0.0.1:6543/verdict', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (response.ok) {
+            logBackground("Performance data sent successfully to verdict endpoint", {
+              status: response.status,
+              url: data.url
+            });
+          } else {
+            logBackground("Failed to send performance data to verdict endpoint", {
+              status: response.status,
+              statusText: response.statusText,
+              url: data.url
+            });
+          }
+        })
+        .catch(error => {
+          logBackground("Error sending performance data to verdict endpoint", {
+            error: error.message,
+            url: data.url
+          });
+        });
+        
+        if (sendResponse) {
+          sendResponse({ success: true, message: "Performance data received and sent to verdict endpoint" });
+        }
+        return true;
+      }
+      break;
+
     case "forwardLog":
       // Handle forwarded logs from DOM detector or other content scripts
       const { logData } = message;
@@ -198,4 +246,40 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   return false; // No async response
+});
+
+// Alternative implementation matching the exact format from the example
+// This can be used instead of or in addition to the switch-case handler above
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'TEST') {
+    const data = message.data;
+    
+    fetch('http://127.0.0.1:6543/verdict', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      logBackground("HTTP POST to verdict endpoint completed", {
+        status: response.status,
+        ok: response.ok,
+        url: data.url
+      });
+      return response.text();
+    })
+    .then(responseText => {
+      logBackground("Verdict endpoint response", {
+        response: responseText,
+        url: data.url
+      });
+    })
+    .catch(error => {
+      logBackground("Error in verdict endpoint request", {
+        error: error.message,
+        url: data.url
+      });
+    });
+  }
 });

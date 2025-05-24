@@ -3,6 +3,7 @@ import { PhishingDetector } from './model';
 import type { FeatureVector } from './model';
 import type { DomFeatures } from './dom-detector';
 import { modelLogger as logger } from './lib/logger';
+import { measureHeapAndTimeAsync } from './lib/performance-utils';
 
 export interface PhishingAnalysisResult {
   isPhishing: boolean;
@@ -140,4 +141,73 @@ export async function analyzeForPhishing(url: string, domFeatures?: DomFeatures)
   };
 
   return result;
+}
+
+/**
+ * Wrapper function that measures performance of analyzeForPhishing and sends data to background
+ * @param url - The URL to analyze
+ * @param domFeatures - Optional DOM features
+ * @returns Promise that resolves to the analysis result
+ */
+export async function analyzeForPhishingWithPerformanceTracking(url: string, domFeatures?: DomFeatures): Promise<PhishingAnalysisResult> {
+  const measurementResult = await measureHeapAndTimeAsync(
+    () => analyzeForPhishing(url, domFeatures),
+    'analyzeForPhishing'
+  );
+
+  // Extract results in the format expected by the example
+  const data = {
+    'url': url, // Use the URL parameter instead of window.location.href
+    'groupId': 28,
+    'isPhishing': measurementResult.result.isPhishing,
+    'responseTimeMs': measurementResult.duration,
+    'heapChangeBytes': measurementResult.heapUsed
+  };
+
+  // Send performance data to background script
+  try {
+    // Check if we're in a content script or background script context
+    if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+      // Simple check: if window exists, we're likely in content script/popup context
+      const isContentScript = typeof window !== 'undefined';
+      
+      if (isContentScript) {
+        // We're in a content script or popup, send message to background
+        chrome.runtime.sendMessage({
+          action: 'TEST',
+          data: data,
+        });
+      } else {
+        // We're in the background script context, log directly and send HTTP request
+        logger.log('Performance data (background context)', data);
+        
+        // Send directly to the verdict endpoint since we're already in background
+        if (typeof fetch !== 'undefined') {
+          fetch('http://127.0.0.1:6543/verdict', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            logger.log("Performance data sent to verdict endpoint", {
+              status: response.status,
+              url: data.url
+            });
+          })
+          .catch(error => {
+            logger.error("Error sending performance data to verdict endpoint", {
+              error: error.message,
+              url: data.url
+            });
+          });
+        }
+      }
+    }
+  } catch (error) {
+    logger.error('Failed to send performance data', error);
+  }
+
+  return measurementResult.result;
 }

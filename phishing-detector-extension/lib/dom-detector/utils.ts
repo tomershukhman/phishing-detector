@@ -43,3 +43,44 @@ export function extractDomainName(hostname: string): string {
   // Fallback for unusual cases
   return hostname;
 }
+
+/**
+ * Wrapper function that measures both execution time and heap memory usage
+ * @param fn - The function to execute and measure
+ * @param fnName - Optional name for the function being measured (for logging)
+ * @returns Object containing the result, timing, and memory data
+ */
+export function measureHeapAndTime<T>(fn: () => T, fnName?: string): {
+  result: T;
+  duration: number;
+  heapBefore: number;
+  heapAfter: number;
+  heapUsed: number;
+} {
+  // Get initial heap size (if available)
+  const heapBefore = (performance as any).memory?.usedJSHeapSize || 0;
+  
+  // Measure execution time
+  const startTime = performance.now();
+  const result = fn();
+  const endTime = performance.now();
+  
+  // Get final heap size (if available)
+  const heapAfter = (performance as any).memory?.usedJSHeapSize || 0;
+  
+  const duration = Math.round(endTime - startTime);
+  const heapUsed = heapAfter - heapBefore;
+  
+  // Optional logging
+  if (fnName) {
+    console.log(`[Performance] ${fnName}: ${duration}ms, heap: ${heapUsed > 0 ? '+' : ''}${heapUsed} bytes`);
+  }
+  
+  return {
+    result,
+    duration,
+    heapBefore,
+    heapAfter,
+    heapUsed
+  };
+}

@@ -1,6 +1,6 @@
 // Handlers for different message types received by the background service worker
 
-import { analyzeForPhishing } from "../../combined-detector";
+import { analyzeForPhishing, analyzeForPhishingWithPerformanceTracking } from "../../combined-detector";
 import { messageLogger as logger } from "../../lib/logger";
 import { getPageLoadTimestamps } from "../index";
 
@@ -109,7 +109,7 @@ export async function analyzeTabUrl(tabId, url, domFeatures = null) {
       domFeaturesCount: domFeatures?.features?.length || 0
     });
 
-    const result = await analyzeForPhishing(url, domFeatures);
+    const result = await analyzeForPhishingWithPerformanceTracking(url, domFeatures);
 
     // Calculate elapsed time for analysis process
     const analysisElapsedTime = Date.now() - analysisStartTime;

@@ -1,0 +1,584 @@
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:28.300Z] PHISHING DETECTOR BACKGROUND SERVICE WORKER STARTED
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:28.300Z] Background service worker initializing
+runtime-c6f564812dbd3b37.js:1 🔵 INFO   | [plasmo/parcel-runtime]: Connected to HMR server for /Users/tomer.shukhman/dev/phishing-detector/phishing-detector-extension/.plasmo/static/background/index.ts
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:28.301Z] Found existing tabs to potentially analyze
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:29.680Z] Initializing analysis for existing tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.685Z] Analyzing URL for phishing
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.685Z] Attempting to get DOM features from content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.685Z] Getting DOM features for tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.685Z] Sending getDomFeatures message to content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.686Z] Error getting DOM features
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.687Z] Retrieved DOM features for analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.687Z] Only error indicators in DOM features, but continuing with analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.687Z] Calling analyzeForPhishing with URL and DOM features
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.687Z] ANALYZING URL FOR PHISHING
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] ===== DOM ANALYSIS HAD ERRORS =====
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] ===== DOM ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] DOM Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] DOM Analysis had errors, relying more on URL analysis
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] Adjusted weights
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] ===== URL ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] URL Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] ===== COMBINED ANALYSIS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:29.704Z] Final Score:
+performance-utils.ts:76 [Performance] analyzeForPhishing: 17ms, heap: 0 bytes
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:29.704Z] Error analyzing URL
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:29.706Z] Error analyzing existing tab
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:30.008Z] Initializing analysis for existing tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.008Z] Analyzing URL for phishing
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.008Z] Attempting to get DOM features from content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.008Z] Getting DOM features for tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.008Z] Sending getDomFeatures message to content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.009Z] Error getting DOM features
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.009Z] Retrieved DOM features for analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.009Z] Only error indicators in DOM features, but continuing with analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.009Z] Calling analyzeForPhishing with URL and DOM features
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.009Z] ANALYZING URL FOR PHISHING
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] ===== DOM ANALYSIS HAD ERRORS =====
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] ===== DOM ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] DOM Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] DOM Analysis had errors, relying more on URL analysis
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] Adjusted weights
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] ===== URL ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] URL Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] ===== COMBINED ANALYSIS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:30.022Z] Final Score:
+performance-utils.ts:76 [Performance] analyzeForPhishing: 13ms, heap: 0 bytes
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:30.022Z] Error analyzing URL
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:30.022Z] Error analyzing existing tab
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.874Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.874Z] [FORWARDED-DOM][2025-05-24T09:55:36.872Z] Enhancing DOM detector logging
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.874Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.874Z] [FORWARDED-DOM][2025-05-24T09:55:36.873Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.873Z] DOM detector logging enhanced
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.874Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.874Z] [FORWARDED-DOM][2025-05-24T09:55:36.873Z] DOM detector logging enhanced
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.881Z] Tab updated with complete status
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.881Z] Recorded page load timestamp
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.881Z] Starting new analysis for updated tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.882Z] Analyzing URL for phishing
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.882Z] Attempting to get DOM features from content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.882Z] Getting DOM features for tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.882Z] Sending getDomFeatures message to content script
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.895Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.895Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.895Z] DOM detector analyzing https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609 (document ready: complete, title: yes)
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.895Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.895Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] DOM detector analyzing https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609 (document ready: complete, title: yes)
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.895Z] Starting DOM analysis for https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] Starting DOM analysis for https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.895Z] Extracting DOM features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] Extracting DOM features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.896Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.895Z] Extracting form features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.897Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.897Z] [FORWARDED-DOM][2025-05-24T09:55:36.895Z] Extracting form features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.897Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.897Z] [FORWARDED-DOM][2025-05-24T09:55:36.896Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.896Z] Extracting link features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.898Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.898Z] [FORWARDED-DOM][2025-05-24T09:55:36.896Z] Extracting link features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.898Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.898Z] [FORWARDED-DOM][2025-05-24T09:55:36.896Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.896Z] Extracting content features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.898Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.898Z] [FORWARDED-DOM][2025-05-24T09:55:36.896Z] Extracting content features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] [FORWARDED-DOM][2025-05-24T09:55:36.897Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.897Z] iframe analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] [FORWARDED-DOM][2025-05-24T09:55:36.897Z] iframe analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] [FORWARDED-DOM][2025-05-24T09:55:36.897Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.897Z] Favicon detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] [FORWARDED-DOM][2025-05-24T09:55:36.897Z] Favicon detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.899Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.897Z] Favicon analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Favicon analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Title match result: NO MATCH for "מנתב מחדש" with domain login.microsoftonline.com
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Title match result: NO MATCH for "מנתב מחדש" with domain login.microsoftonline.com
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Title match details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Title match details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] --- Suspicious Text Detection Results ---
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] --- Suspicious Text Detection Results ---
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Total fraudTextScore:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.900Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Total fraudTextScore:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Total suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Total suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Unique suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Unique suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Top suspicious words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Top suspicious words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.901Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] All detected words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] All detected words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.898Z] Text visibility statistics:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] [FORWARDED-DOM][2025-05-24T09:55:36.898Z] Text visibility statistics:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.902Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.901Z] Large image analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] Large image analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.901Z] Single image dominance analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.903Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] Single image dominance analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.901Z] Extracting security features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] Extracting security features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.901Z] Extracting invisible element features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.904Z] [FORWARDED-DOM][2025-05-24T09:55:36.901Z] Extracting invisible element features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.905Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.905Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.902Z] Extracting cookie consent features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.905Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.905Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] Extracting cookie consent features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.902Z] Found 0 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] Found 0 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.902Z] Cookie consent detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] Cookie consent detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.902Z] Calculating suspiciousness score...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] Calculating suspiciousness score...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.902Z] DOM analysis completed in 8ms with score: 0.6119, found 35 features
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:36.906Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] DOM analysis completed in 8ms with score: 0.6119, found 35 features
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.907Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.907Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:36.902Z] DOM analysis result:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.907Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.907Z] [FORWARDED-DOM][2025-05-24T09:55:36.902Z] DOM analysis result:
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.907Z] Successfully received DOM features
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.907Z] Retrieved DOM features for analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.907Z] Calling analyzeForPhishing with URL and DOM features
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.907Z] ANALYZING URL FOR PHISHING
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.915Z] ===== DOM ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.915Z] DOM Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.915Z] ===== URL ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.915Z] URL Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.915Z] ===== COMBINED ANALYSIS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:36.915Z] Final Score:
+performance-utils.ts:76 [Performance] analyzeForPhishing: 8ms, heap: 0 bytes
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:36.915Z] Error analyzing URL
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:36.915Z] Error during tab analysis
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.272Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.272Z] [FORWARDED-DOM][2025-05-24T09:55:37.270Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.270Z] Root favicon.ico check:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.273Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.273Z] [FORWARDED-DOM][2025-05-24T09:55:37.270Z] Root favicon.ico check:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.323Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.323Z] [FORWARDED-DOM][2025-05-24T09:55:37.322Z] Enhancing DOM detector logging
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.324Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.324Z] [FORWARDED-DOM][2025-05-24T09:55:37.322Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.322Z] DOM detector logging enhanced
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.324Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.324Z] [FORWARDED-DOM][2025-05-24T09:55:37.322Z] DOM detector logging enhanced
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.344Z] Tab updated with complete status
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.344Z] Recorded page load timestamp
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.344Z] Starting new analysis for updated tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.344Z] Analyzing URL for phishing
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.344Z] Attempting to get DOM features from content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.344Z] Getting DOM features for tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.344Z] Sending getDomFeatures message to content script
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.348Z] Tab updated with complete status
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.348Z] Recorded page load timestamp
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.348Z] Analysis already in progress for this tab
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.349Z] Tab updated with complete status
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.349Z] Recorded page load timestamp
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.349Z] Analysis already in progress for this tab
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.350Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.350Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.349Z] DOM detector analyzing https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true (document ready: complete, title: yes)
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.350Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.350Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] DOM detector analyzing https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true (document ready: complete, title: yes)
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.349Z] Starting DOM analysis for https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] Starting DOM analysis for https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.349Z] Extracting DOM features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] Extracting DOM features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.351Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.349Z] Extracting form features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.354Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.354Z] [FORWARDED-DOM][2025-05-24T09:55:37.349Z] Extracting form features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] Extracting link features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] Extracting link features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] Extracting content features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] Extracting content features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] iframe analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] iframe analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.355Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] Favicon detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] Favicon detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] Favicon analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] Favicon analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] Title match result: NO MATCH for "היכנס לחשבון שלך" with domain login.microsoftonline.com
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] Title match result: NO MATCH for "היכנס לחשבון שלך" with domain login.microsoftonline.com
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.352Z] Title match details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.356Z] [FORWARDED-DOM][2025-05-24T09:55:37.352Z] Title match details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] --- Suspicious Text Detection Results ---
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] --- Suspicious Text Detection Results ---
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] Total fraudTextScore:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] Total fraudTextScore:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] Total suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] Total suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] Unique suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.423Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] Unique suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] Top suspicious words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] Top suspicious words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] All detected words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] All detected words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.422Z] Text visibility statistics:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.422Z] Text visibility statistics:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.423Z] Large image analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] Large image analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.423Z] Single image dominance analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] Single image dominance analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.424Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.423Z] Extracting security features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] Extracting security features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.423Z] Extracting invisible element features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.425Z] [FORWARDED-DOM][2025-05-24T09:55:37.423Z] Extracting invisible element features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] [FORWARDED-DOM][2025-05-24T09:55:37.424Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.424Z] Hidden input analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] [FORWARDED-DOM][2025-05-24T09:55:37.424Z] Hidden input analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] Extracting cookie consent features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] Extracting cookie consent features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.426Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] Found 0 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] Found 0 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] Cookie consent detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] Cookie consent detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] Calculating suspiciousness score...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] Calculating suspiciousness score...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] DOM analysis completed in 76ms with score: 0.3331, found 35 features
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] DOM analysis completed in 76ms with score: 0.3331, found 35 features
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.427Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] DOM analysis result:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.428Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.428Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] DOM analysis result:
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.428Z] Successfully received DOM features
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.428Z] Retrieved DOM features for analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.428Z] Calling analyzeForPhishing with URL and DOM features
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.428Z] ANALYZING URL FOR PHISHING
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.434Z] ===== DOM ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.434Z] DOM Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.434Z] ===== URL ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.434Z] URL Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.434Z] ===== COMBINED ANALYSIS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.434Z] Final Score:
+performance-utils.ts:76 [Performance] analyzeForPhishing: 6ms, heap: 0 bytes
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.434Z] Error analyzing URL
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] Error during tab analysis
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.425Z] Root favicon.ico check:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] [FORWARDED-DOM][2025-05-24T09:55:37.425Z] Root favicon.ico check:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] Tab updated with complete status
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] Recorded page load timestamp
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.434Z] Starting new analysis for updated tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.434Z] Analyzing URL for phishing
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.434Z] Attempting to get DOM features from content script
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.434Z] Getting DOM features for tab
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.434Z] Sending getDomFeatures message to content script
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.436Z] Tab updated with complete status
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.436Z] Recorded page load timestamp
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.436Z] Analysis already in progress for this tab
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.468Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.468Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.467Z] DOM detector analyzing https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true (document ready: complete, title: yes)
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.468Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.468Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] DOM detector analyzing https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true (document ready: complete, title: yes)
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.467Z] Starting DOM analysis for https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] Starting DOM analysis for https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.467Z] Extracting DOM features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] Extracting DOM features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.469Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.467Z] Extracting form features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.470Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.470Z] [FORWARDED-DOM][2025-05-24T09:55:37.467Z] Extracting form features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.472Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.472Z] [FORWARDED-DOM][2025-05-24T09:55:37.472Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.472Z] Extracting link features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.472Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.472Z] [FORWARDED-DOM][2025-05-24T09:55:37.472Z] Extracting link features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.472Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.472Z] Extracting content features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.472Z] Extracting content features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.473Z] iframe analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] iframe analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.473Z] Favicon detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] Favicon detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.473Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.473Z] Favicon analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] Favicon analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.473Z] Title match result: NO MATCH for "היכנס לחשבון שלך" with domain login.microsoftonline.com
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] Title match result: NO MATCH for "היכנס לחשבון שלך" with domain login.microsoftonline.com
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.473Z] Title match details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.474Z] [FORWARDED-DOM][2025-05-24T09:55:37.473Z] Title match details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.490Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] --- Suspicious Text Detection Results ---
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] --- Suspicious Text Detection Results ---
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Total fraudTextScore:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Total fraudTextScore:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Total suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Total suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Unique suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Unique suspicious word count:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Top suspicious words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.491Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Top suspicious words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] All detected words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] All detected words:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Text visibility statistics:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Text visibility statistics:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Large image analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Large image analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.490Z] Single image dominance analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.490Z] Single image dominance analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.491Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.491Z] Extracting security features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.491Z] Extracting security features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.492Z] [FORWARDED-DOM][2025-05-24T09:55:37.491Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.491Z] Extracting invisible element features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.493Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.493Z] [FORWARDED-DOM][2025-05-24T09:55:37.491Z] Extracting invisible element features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Hidden input analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Hidden input analysis:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Extracting cookie consent features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.495Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Extracting cookie consent features...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Found 2 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Found 2 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Cookie consent detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Cookie consent detection details:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Calculating suspiciousness score...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Calculating suspiciousness score...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.496Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] DOM analysis completed in 28ms with score: 0.3316, found 35 features
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] DOM analysis completed in 28ms with score: 0.3316, found 35 features
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] DOM analysis result:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] DOM analysis result:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.497Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:37.495Z] Root favicon.ico check:
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.497Z] Successfully received DOM features
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.497Z] Retrieved DOM features for analysis
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.497Z] Calling analyzeForPhishing with URL and DOM features
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.497Z] ANALYZING URL FOR PHISHING
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+model.ts:483 Unknown feature: contains_brand_name
+calculateFeature @ model.ts:483
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.505Z] ===== DOM ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.505Z] DOM Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.505Z] ===== URL ANALYSIS RESULTS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.505Z] URL Score:
+logger.ts:70 %c[PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.505Z] ===== COMBINED ANALYSIS =====
+logger.ts:68 [PHISHING-DETECTOR-MODEL][2025-05-24T09:55:37.505Z] Final Score:
+performance-utils.ts:76 [Performance] analyzeForPhishing: 8ms, heap: 0 bytes
+logger.ts:68 [PHISHING-DETECTOR-MSG][2025-05-24T09:55:37.505Z] Error analyzing URL
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.505Z] Error during tab analysis
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:37.505Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:37.505Z] [FORWARDED-DOM][2025-05-24T09:55:37.495Z] Root favicon.ico check:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.563Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.827Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:38.827Z] [FORWARDED-DOM][2025-05-24T09:55:38.823Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:38.823Z] Found 3 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.827Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:38.827Z] [FORWARDED-DOM][2025-05-24T09:55:38.824Z] Found 3 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.827Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.828Z] [FORWARDED-DOM][2025-05-24T09:55:38.824Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:38.824Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.828Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.828Z] [FORWARDED-DOM][2025-05-24T09:55:38.824Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.828Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.828Z] [FORWARDED-DOM][2025-05-24T09:55:38.825Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:38.825Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.829Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.829Z] [FORWARDED-DOM][2025-05-24T09:55:38.825Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.829Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:38.829Z] [FORWARDED-DOM][2025-05-24T09:55:38.825Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:38.825Z] Delayed consent popup detection (1500ms): not found
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:38.829Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:38.829Z] [FORWARDED-DOM][2025-05-24T09:55:38.825Z] Delayed consent popup detection (1500ms): not found
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.326Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] [FORWARDED-DOM][2025-05-24T09:55:40.323Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:40.322Z] Found 3 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] [FORWARDED-DOM][2025-05-24T09:55:40.323Z] Found 3 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] [FORWARDED-DOM][2025-05-24T09:55:40.323Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:40.323Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.327Z] [FORWARDED-DOM][2025-05-24T09:55:40.323Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] [FORWARDED-DOM][2025-05-24T09:55:40.324Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:40.324Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] [FORWARDED-DOM][2025-05-24T09:55:40.324Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] [FORWARDED-DOM][2025-05-24T09:55:40.324Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:40.324Z] Delayed consent popup detection (3000ms): not found
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:40.328Z] [FORWARDED-DOM][2025-05-24T09:55:40.324Z] Delayed consent popup detection (3000ms): not found
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.325Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:42.325Z] [FORWARDED-DOM][2025-05-24T09:55:42.323Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:42.323Z] Found 3 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] [FORWARDED-DOM][2025-05-24T09:55:42.323Z] Found 3 potential consent buttons to check
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] [FORWARDED-DOM][2025-05-24T09:55:42.324Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:42.324Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] [FORWARDED-DOM][2025-05-24T09:55:42.324Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.326Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] [FORWARDED-DOM][2025-05-24T09:55:42.324Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:42.324Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] Message received in background
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] [FORWARDED-DOM][2025-05-24T09:55:42.324Z] Button found but not matching consent patterns:
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] [FORWARDED-DOM][2025-05-24T09:55:42.324Z] %c[PHISHING-DETECTOR-DOM][2025-05-24T09:55:42.324Z] Delayed consent popup detection (5000ms): not found
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] Message received in background
+logger.ts:70 %c[PHISHING-DETECTOR-BG][2025-05-24T09:55:42.327Z] [FORWARDED-DOM][2025-05-24T09:55:42.324Z] Delayed consent popup detection (5000ms): not found
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:46.058Z] Message received in background
+runtime-cd3294066e2dcc9d.js:1 🔵 INFO   | [plasmo/parcel-runtime]: Connected to HMR server for /Users/tomer.shukhman/dev/phishing-detector/phishing-detector-extension/.plasmo/static/popup.tsx
+popup.tsx:347 [Popup] Popup opened for URL: https://login.microsoftonline.com/08372820-8bf2-48ce-8e9e-4d26f179993a/oauth2/authorize?client%5Fid=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&response%5Fmode=form%5Fpost&response%5Ftype=code%20id%5Ftoken&resource=00000003%2D0000%2D0ff1%2Dce00%2D000000000000&scope=openid&nonce=77F02A652992FF662988C5CF5D2CB5BB60EAF7AFE8EFAD0B%2DB345AC1AEFD46E059AFB07FAA48EC7A40C516244D6F8D2419D593D731EEAF799&redirect%5Furi=https%3A%2F%2Fpostidcac%2Esharepoint%2Ecom%2F%5Fforms%2Fdefault%2Easpx&state=OD0w&claims=%7B%22id%5Ftoken%22%3A%7B%22xms%5Fcc%22%3A%7B%22values%22%3A%5B%22CP1%22%5D%7D%7D%7D&wsucxt=1&cobrandid=11bd8083%2D87e0%2D41b5%2Dbb78%2D0bc43c8a8e8a&client%2Drequest%2Did=503ea1a1%2D803b%2Dc000%2Dc4c7%2D55b956e36609&sso_reload=true
+popup.tsx:347 [Popup] Checking for analysis data...
+popup.tsx:347 [Popup] Fetching suspicious words data...
+logger.ts:68 [PHISHING-DETECTOR-BG][2025-05-24T09:55:50.765Z] Message received in background
+popup.tsx:347 [Popup] No suspicious words data available
+popup.tsx:347 [Popup] Found analysis data from background
+popup.tsx:347 [Popup] Analysis was performed at: 5/24/2025, 12:55:37 PM
+popup.tsx:347 [Popup] Processing analysis result: safe (0% confidence)
+popup.tsx:347 [Popup] Loaded pre-analyzed result from background
+SummaryTab.tsx:89 [SummaryTab] Retrieved suspicious words data

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import type { PhishingAnalysisResult } from "./combined-detector"
-import { analyzeForPhishing } from "./combined-detector"
+import { analyzeForPhishing, analyzeForPhishingWithPerformanceTracking } from "./combined-detector"
 import "./popup.css"
 import { getCurrentTabId, getCurrentTabUrl, getTabAnalysisData, analyzeUrlManually } from "./lib/messaging"
 import { createMessageListener } from "./lib/messaging-utils"
@@ -423,7 +423,7 @@ function IndexPopup() {
       } else {
         // Fallback to direct analysis if messaging failed
         addDebugMessage("Messaging failed, falling back to direct analysis");
-        const result = await analyzeForPhishing(url);
+        const result = await analyzeForPhishingWithPerformanceTracking(url);
         setAnalysisTimestamp(Date.now());
         processAnalysisResult(result);
       }
