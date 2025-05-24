@@ -63,9 +63,9 @@ const createLogger = (options: LoggerOptions) => {
       if (minLevel <= LogLevel.INFO) {
         const formattedMessage = `${prefix}[${new Date().toISOString()}] ${message}`;
         if (data) {
-          console.log(`%c${formattedMessage}`, 'color: #2196F3; font-weight: bold;', data);
+          console.log(`%c${formattedMessage}`, 'color: white; font-weight: bold;', data);
         } else {
-          console.log(`%c${formattedMessage}`, 'color: #2196F3; font-weight: bold;');
+          console.log(`%c${formattedMessage}`, 'color: white; font-weight: bold;');
         }
         sendToBackground('INFO', message, data);
       }

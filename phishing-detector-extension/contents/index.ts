@@ -24,7 +24,114 @@ let analysisCompleted = false;
 let analysisTimestamp = 0;
 let analysisResult = null;
 
+// Performance measurement function as specified in the email instructions
+async function measureHeapAndTime(fn, ...args) {
+  if (!window.performance || !(performance as any).memory) {
+    throw new Error("performance.memory API not available. Must be run in Chrome Extension context.");
+  }
 
+  logger.log("Starting performance measurement", { 
+    functionName: fn.name || 'anonymous',
+    args: args.length 
+  });
+
+  // Record initial heap stats
+  const startHeap = (performance as any).memory.usedJSHeapSize;
+  const startTime = performance.now();
+
+  logger.log("Performance baseline recorded", {
+    startTime,
+    startHeapMB: (startHeap / 1024 / 1024).toFixed(2)
+  });
+
+  // Run the function (supports async)
+  let functionOutput, error = null;
+  try {
+    logger.log("Executing measured function...");
+    functionOutput = await fn(...args);
+    logger.log("Function execution completed", {
+      hasResult: !!functionOutput,
+      resultType: typeof functionOutput
+    });
+  } catch (e) {
+    error = e;
+    logger.error("Function execution failed", { error: e.message });
+  }
+
+  const endTime = performance.now();
+  const endHeap = (performance as any).memory.usedJSHeapSize;
+
+  const heapDelta = endHeap - startHeap;
+  const timeMs = endTime - startTime;
+
+  logger.log("Performance measurement completed", {
+    timeMs: timeMs.toFixed(2),
+    heapDeltaKB: (heapDelta / 1024).toFixed(2),
+    endHeapMB: (endHeap / 1024 / 1024).toFixed(2)
+  });
+
+  return {
+    functionOutput,
+    error,
+    heapChangeBytes: heapDelta,
+    timeMs,
+    heapBefore: startHeap,
+    heapAfter: endHeap
+  };
+}
+
+// Import the main classification function
+import { analyzeForPhishing } from "../combined-detector"
+
+// Wrapper function to run the main phishing classification with performance tracking and send results
+async function runMainClassificationWithPerformanceTracking() {
+  logger.log("Starting main classification with performance tracking");
+  
+  // Get DOM features for the main classification
+  let domFeatures = null;
+  try {
+    domFeatures = analyzeDom();
+    logger.log("DOM analysis completed for main classification", { featureCount: domFeatures?.features?.length || 0 });
+  } catch (error) {
+    logger.log("Error during DOM analysis for main classification", { error: error.message });
+  }
+
+  try {
+    // Create a wrapper function that ensures we measure the complete classification process
+    const classificationFunction = async () => {
+      logger.log("Starting complete phishing analysis");
+      const result = await analyzeForPhishing(window.location.href, domFeatures);
+      logger.log("Complete phishing analysis finished", { 
+        isPhishing: result.isPhishing, 
+        confidence: result.confidence 
+      });
+      return result;
+    };
+
+    // Run the main classification function with performance tracking
+    const measurementResult = await measureHeapAndTime(classificationFunction);
+    
+    const data = {
+      'url': window.location.href,
+      'groupId': 28,
+      'isPhishing': measurementResult.functionOutput.isPhishing,
+      'responseTimeMs': measurementResult.timeMs,
+      'heapChangeBytes': measurementResult.heapChangeBytes
+    };
+
+    chrome.runtime.sendMessage({
+      action: 'TEST', // send a message to the background with the `data` object
+      data: data,
+    });
+
+    logger.log("Main classification performance data sent", { 
+      data,
+      analysisResult: measurementResult.functionOutput 
+    });
+  } catch (error) {
+    logger.error("Error in main classification performance tracking", { error: error.message });
+  }
+}
 
 // Notify background script that the page has loaded and is ready for analysis
 function notifyPageReady() {
@@ -268,6 +375,9 @@ window.addEventListener("load", () => {
       // Wait for page to be completely ready
       await ensurePageReadiness();
       notifyPageReady();
+      
+      // Run the main classification with performance tracking
+      await runMainClassificationWithPerformanceTracking();
     } catch (error) {
       logger.log("Error in page readiness or analysis", { error: error.message });
       // Retry once more after a delay if it fails
@@ -275,6 +385,7 @@ window.addEventListener("load", () => {
         try {
           await ensurePageReadiness();
           notifyPageReady();
+          await runMainClassificationWithPerformanceTracking();
         } catch (retryError) {
           logger.log("Retry also failed", { error: retryError.message });
         }
@@ -291,6 +402,9 @@ if (document.readyState === "complete") {
       // Still use readiness helper to ensure title and dynamic content is ready
       await ensurePageReadiness();
       notifyPageReady();
+      
+      // Run the main classification with performance tracking
+      await runMainClassificationWithPerformanceTracking();
     } catch (error) {
       logger.log("Error in page readiness or analysis (fallback)", { error: error.message });
       // Retry once more after a delay if it fails
@@ -298,6 +412,7 @@ if (document.readyState === "complete") {
         try {
           await ensurePageReadiness();
           notifyPageReady();
+          await runMainClassificationWithPerformanceTracking();
         } catch (retryError) {
           logger.log("Retry also failed (fallback)", { error: retryError.message });
         }
