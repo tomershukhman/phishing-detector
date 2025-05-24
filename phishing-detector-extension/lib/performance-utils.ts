@@ -69,19 +69,15 @@ export function measureHeapAndTime<T>(fn: () => T, fnName?: string): {
     // Log summary in a highlighted format
     const heapChangeStr = heapUsed > 0 ? `+${(heapUsed / 1024).toFixed(2)} KB` : `${(heapUsed / 1024).toFixed(2)} KB`;
     perfLogger.log(`📊 PERFORMANCE SUMMARY - ${functionName}: ${duration}ms, heap: ${heapChangeStr}`);
+    
+    return {
+      result: result!,
+      duration,
+      heapBefore,
+      heapAfter,
+      heapUsed
+    };
   }
-  
-  const duration = Math.round(performance.now() - startTime);
-  const heapAfter = (performance as any).memory?.usedJSHeapSize || 0;
-  const heapUsed = heapAfter - heapBefore;
-  
-  return {
-    result: result!,
-    duration,
-    heapBefore,
-    heapAfter,
-    heapUsed
-  };
 }
 
 /**
@@ -150,19 +146,15 @@ export async function measureHeapAndTimeAsync<T>(fn: () => Promise<T>, fnName?: 
     // Log summary in a highlighted format
     const heapChangeStr = heapUsed > 0 ? `+${(heapUsed / 1024).toFixed(2)} KB` : `${(heapUsed / 1024).toFixed(2)} KB`;
     perfLogger.log(`📊 ASYNC PERFORMANCE SUMMARY - ${functionName}: ${duration}ms, heap: ${heapChangeStr}`);
+    
+    return {
+      result: result!,
+      duration,
+      heapBefore,
+      heapAfter,
+      heapUsed
+    };
   }
-  
-  const duration = Math.round(performance.now() - startTime);
-  const heapAfter = (performance as any).memory?.usedJSHeapSize || 0;
-  const heapUsed = heapAfter - heapBefore;
-  
-  return {
-    result: result!,
-    duration,
-    heapBefore,
-    heapAfter,
-    heapUsed
-  };
 }
 
 /**
@@ -200,14 +192,12 @@ export function measureTime<T>(fn: () => T, fnName?: string): {
     });
     
     perfLogger.log(`⏱️  TIME SUMMARY - ${functionName}: ${duration}ms`);
+    
+    return {
+      result: result!,
+      duration
+    };
   }
-  
-  const duration = Math.round(performance.now() - startTime);
-  
-  return {
-    result: result!,
-    duration
-  };
 }
 
 /**

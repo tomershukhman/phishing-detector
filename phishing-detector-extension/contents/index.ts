@@ -79,7 +79,7 @@ async function measureHeapAndTime(fn, ...args) {
 
   logger.log("Performance baseline recorded", {
     startTime,
-    startHeapMB: hasMemoryAPI ? (startHeap / 1024 / 1024).toFixed(2) : 'N/A'
+    startHeapBytes: hasMemoryAPI ? startHeap : 'N/A'
   });
 
   // Run the function (supports async)
@@ -103,9 +103,10 @@ async function measureHeapAndTime(fn, ...args) {
   const timeMs = endTime - startTime;
 
   logger.log("Performance measurement completed", {
-    timeMs: timeMs.toFixed(2),
-    heapDeltaKB: hasMemoryAPI ? (heapDelta / 1024).toFixed(2) : 'N/A',
-    endHeapMB: hasMemoryAPI ? (endHeap / 1024 / 1024).toFixed(2) : 'N/A'
+    timeMs: timeMs,
+    heapDeltaBytes: hasMemoryAPI ? heapDelta : 'N/A',
+    startHeapBytes: hasMemoryAPI ? startHeap : 'N/A',
+    endHeapBytes: hasMemoryAPI ? endHeap : 'N/A'
   });
 
   return {
