@@ -629,48 +629,8 @@ export class PhishingDetector {
     });
   }
 
-  /**
-   * DEBUG: Special debug method to compare with Python
-   */
-  debugPrediction(url: string): void {
-    logger.log("=======================================");
-    logger.log("DETAILED DEBUG OUTPUT FOR URL:", url);
-    logger.log("=======================================");
-    
-    const features = this.featureExtractor.extractFeatures(url);
-    
-    // Filter features to only include those used by the model
-    const modelFeatures = this.featureNames.reduce((acc, name) => {
-      acc[name] = features[name];
-      return acc;
-    }, {} as FeatureVector);
-    
-    logger.log("\nExtracted Features:");
-    logger.log(JSON.stringify(modelFeatures, null, 2));
-    
-    logger.log("\nModel intercept:", this.intercept);
-    
-    logger.log("\nFeature coefficient calculation:");
-    let rawScore = this.intercept;
-    logger.log(`Starting with intercept: ${rawScore}`);
-    
-    this.featureNames.forEach((featureName, i) => {
-      const value = features[featureName] || 0;
-      const coefficient = this.coefficients[i];
-      const contribution = value * coefficient;
-      rawScore += contribution;
-      
-      logger.log(`${featureName.padEnd(25)}: ${value.toFixed(4).padStart(8)} × ${coefficient.toFixed(4).padStart(8)} = ${contribution.toFixed(4).padStart(8)}`);
-    });
-    
-    logger.log("\nFinal raw score:", rawScore);
-    const probability = this.sigmoid(rawScore);
-    const phishingProbability = this.calculatePhishingProbability(rawScore);
-    logger.log("Confidence (sigmoid with abs):", probability.toFixed(6));
-    logger.log("Phishing Probability (sigmoid without abs):", phishingProbability.toFixed(6));
-    logger.log("Prediction:", rawScore > 0 ? "PHISHING" : "BENIGN");
-    logger.log("=======================================");
-  }
+
+
 }
 
 // Type definitions
