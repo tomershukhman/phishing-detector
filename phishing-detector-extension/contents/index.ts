@@ -32,6 +32,9 @@ let analysisCompleted = false;
 let analysisTimestamp = 0;
 let analysisResult = null;
 
+// Flag to ensure performance tracking only runs once per page
+let performanceTrackingExecuted = false;
+
 // Performance measurement function as specified in the email instructions
 async function measureHeapAndTime(fn, ...args) {
   // Debug the performance API availability
@@ -124,6 +127,15 @@ import { analyzeForPhishing } from "../combined-detector"
 
 // Wrapper function to run the main phishing classification with performance tracking and send results
 async function runMainClassificationWithPerformanceTracking() {
+  // Ensure performance tracking only runs once per page load
+  if (performanceTrackingExecuted) {
+    console.log("[PHISHING-DETECTOR] Performance tracking already executed for this page, skipping");
+    logger.log("Performance tracking already executed for this page, skipping");
+    return;
+  }
+  
+  performanceTrackingExecuted = true;
+  
   console.log("[PHISHING-DETECTOR] Starting main classification with performance tracking");
   logger.log("Starting main classification with performance tracking");
   
