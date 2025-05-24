@@ -1,6 +1,6 @@
 // Using Plasmo messaging API
 import type { PlasmoMessaging } from "@plasmohq/messaging"
-import { analyzeForPhishing, analyzeForPhishingWithPerformanceTracking } from "~combined-detector"
+import { analyzeForPhishing } from "~combined-detector"
 import { getPageLoadTimestamps } from "../index"
 
 // Global persistent data store - will be shared across message handlers
@@ -24,7 +24,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     const pageLoadTime = pageLoadTimestamps.get(tabId) || analysisStartTime; // Fallback to analysis start time
 
     // Analyze the URL
-    const result = await analyzeForPhishingWithPerformanceTracking(url, domFeatures)
+    const result = await analyzeForPhishing(url, domFeatures)
 
     // Calculate elapsed time for the analysis itself
     const analysisElapsedTime = Date.now() - analysisStartTime;

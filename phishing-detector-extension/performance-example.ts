@@ -1,6 +1,6 @@
 // Example usage of the performance tracking functionality
 
-import { analyzeForPhishingWithPerformanceTracking } from './combined-detector';
+import { analyzeForPhishing } from './combined-detector';
 
 /**
  * Example showing how to use the performance-wrapped analysis function
@@ -15,7 +15,7 @@ export async function exampleUsage() {
     // 2. Run the phishing analysis
     // 3. Send performance data to background script with action 'TEST'
     // 4. Return the analysis result
-    const result = await analyzeForPhishingWithPerformanceTracking(testUrl);
+    const result = await analyzeForPhishing(testUrl);
     
     console.log('Analysis completed:', {
       isPhishing: result.isPhishing,

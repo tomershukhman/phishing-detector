@@ -1,6 +1,7 @@
 // Using Plasmo messaging API
 import type { PlasmoMessaging } from "@plasmohq/messaging"
-import { analyzeForPhishing, analyzeForPhishingWithPerformanceTracking } from "~combined-detector"
+import { analyzeForPhishing } from "~combined-detector"
+import { backgroundLogger as logger } from "~lib/logger"
 
 // Global persistent data store - will be shared across message handlers
 if (typeof self !== "undefined") {
@@ -52,7 +53,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     const domFeatures = req.body.domFeatures;
     
     // Analyze the URL with DOM features if available
-    const result = await analyzeForPhishingWithPerformanceTracking(url, domFeatures)
+    const result = await analyzeForPhishing(url, domFeatures)
     
     // Store the result for this tab
     // @ts-ignore

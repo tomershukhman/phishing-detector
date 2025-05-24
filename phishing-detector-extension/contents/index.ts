@@ -137,26 +137,17 @@ async function runMainClassificationWithPerformanceTracking() {
   }
 
   try {
-    // Create a wrapper function that ensures we measure the complete classification process
-    const classificationFunction = async () => {
-      console.log("[PHISHING-DETECTOR] Starting complete phishing analysis");
-      logger.log("Starting complete phishing analysis");
-      const result = await analyzeForPhishing(window.location.href, domFeatures);
-      console.log("[PHISHING-DETECTOR] Complete phishing analysis finished", { 
-        isPhishing: result.isPhishing, 
-        confidence: result.confidence 
-      });
-      logger.log("Complete phishing analysis finished", { 
-        isPhishing: result.isPhishing, 
-        confidence: result.confidence 
-      });
-      return result;
-    };
-
     console.log("[PHISHING-DETECTOR] About to call measureHeapAndTime");
-    // Run the main classification function with performance tracking
-    const measurementResult = await measureHeapAndTime(classificationFunction);
+    logger.log("Starting complete phishing analysis");
+    
+    // Run the main classification function with performance tracking - measuring ONLY analyzeForPhishing
+    const measurementResult = await measureHeapAndTime(analyzeForPhishing, window.location.href, domFeatures);
+    
     console.log("[PHISHING-DETECTOR] measureHeapAndTime completed", measurementResult);
+    logger.log("Complete phishing analysis finished", { 
+      isPhishing: measurementResult.functionOutput.isPhishing, 
+      confidence: measurementResult.functionOutput.confidence 
+    });
     
     const data = {
       'url': window.location.href,
