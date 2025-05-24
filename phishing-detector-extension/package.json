@@ -35,7 +35,8 @@
       "tabs",
       "storage",
       "webNavigation",
-      "contextMenus"
+      "contextMenus",
+      "memory"
     ],
     "background": {
       "persistent": false

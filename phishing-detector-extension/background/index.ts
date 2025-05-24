@@ -254,6 +254,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'TEST') {
     const data = message.data;
     
+    logBackground("RECEIVED PERFORMANCE DATA from content script", {
+      url: data.url,
+      groupId: data.groupId,
+      isPhishing: data.isPhishing,
+      responseTimeMs: data.responseTimeMs,
+      heapChangeBytes: data.heapChangeBytes
+    });
+    
     fetch('http://127.0.0.1:6543/verdict', {
       method: 'POST',
       headers: {

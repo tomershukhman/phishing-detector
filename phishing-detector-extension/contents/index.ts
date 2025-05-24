@@ -1,9 +1,13 @@
 // Content script that gets injected into pages
 // NOTE: Content script logs are automatically forwarded to the background console for better visibility
+console.log("[PHISHING-DETECTOR] Content script starting to load");
+
 import type { PlasmoCSConfig } from "plasmo"
 import { analyzeDom } from "../dom-detector"
 import { ensurePageReadiness } from "./page-readiness"
 import { contentLogger as logger } from "../lib/logger"
+
+console.log("[PHISHING-DETECTOR] Content script imports loaded");
 
 // Plasmo configuration for content script
 export const config: PlasmoCSConfig = {
@@ -12,12 +16,16 @@ export const config: PlasmoCSConfig = {
   run_at: "document_idle" // Make sure DOM is fully loaded
 }
 
+console.log("[PHISHING-DETECTOR] Content script config set");
+
 // Immediately announce presence for debugging
+console.log("[PHISHING-DETECTOR] About to call logger.log");
 logger.log("PHISHING DETECTOR CONTENT SCRIPT LOADED", {
   url: window.location.href,
   time: new Date().toISOString(),
   version: "1.1.0" // Add version for debugging
 });
+console.log("[PHISHING-DETECTOR] logger.log called");
 
 // Create a flag to track analysis status
 let analysisCompleted = false;
@@ -26,22 +34,52 @@ let analysisResult = null;
 
 // Performance measurement function as specified in the email instructions
 async function measureHeapAndTime(fn, ...args) {
-  if (!window.performance || !(performance as any).memory) {
-    throw new Error("performance.memory API not available. Must be run in Chrome Extension context.");
-  }
-
-  logger.log("Starting performance measurement", { 
-    functionName: fn.name || 'anonymous',
-    args: args.length 
+  // Debug the performance API availability
+  console.log("[PHISHING-DETECTOR-PERF] Performance API debug", {
+    hasWindow: typeof window !== 'undefined',
+    hasPerformance: typeof performance !== 'undefined',
+    performanceKeys: performance ? Object.keys(performance) : [],
+    hasMemoryProperty: performance && 'memory' in performance,
+    memoryValue: performance && (performance as any).memory,
+    isSecureContext: window.isSecureContext,
+    origin: window.location.origin
+  });
+  
+  logger.log("Performance API debug", {
+    hasWindow: typeof window !== 'undefined',
+    hasPerformance: typeof performance !== 'undefined',
+    performanceKeys: performance ? Object.keys(performance) : [],
+    hasMemoryProperty: performance && 'memory' in performance,
+    memoryValue: performance && (performance as any).memory,
+    isSecureContext: window.isSecureContext,
+    origin: window.location.origin
   });
 
-  // Record initial heap stats
-  const startHeap = (performance as any).memory.usedJSHeapSize;
+  const hasMemoryAPI = window.performance && (performance as any).memory;
+  
+  console.log("[PHISHING-DETECTOR-PERF] Starting performance measurement", { 
+    functionName: fn.name || 'anonymous',
+    args: args.length,
+    memoryAPIAvailable: hasMemoryAPI
+  });
+  
+  logger.log("Starting performance measurement", { 
+    functionName: fn.name || 'anonymous',
+    args: args.length,
+    memoryAPIAvailable: hasMemoryAPI
+  });
+
+  if (!hasMemoryAPI) {
+    logger.log("Heap measurement not available for:", fn.name || 'anonymous');
+  }
+
+  // Record initial heap stats (or 0 if not available)
+  const startHeap = hasMemoryAPI ? (performance as any).memory.usedJSHeapSize : 0;
   const startTime = performance.now();
 
   logger.log("Performance baseline recorded", {
     startTime,
-    startHeapMB: (startHeap / 1024 / 1024).toFixed(2)
+    startHeapMB: hasMemoryAPI ? (startHeap / 1024 / 1024).toFixed(2) : 'N/A'
   });
 
   // Run the function (supports async)
@@ -59,15 +97,15 @@ async function measureHeapAndTime(fn, ...args) {
   }
 
   const endTime = performance.now();
-  const endHeap = (performance as any).memory.usedJSHeapSize;
+  const endHeap = hasMemoryAPI ? (performance as any).memory.usedJSHeapSize : 0;
 
   const heapDelta = endHeap - startHeap;
   const timeMs = endTime - startTime;
 
   logger.log("Performance measurement completed", {
     timeMs: timeMs.toFixed(2),
-    heapDeltaKB: (heapDelta / 1024).toFixed(2),
-    endHeapMB: (endHeap / 1024 / 1024).toFixed(2)
+    heapDeltaKB: hasMemoryAPI ? (heapDelta / 1024).toFixed(2) : 'N/A',
+    endHeapMB: hasMemoryAPI ? (endHeap / 1024 / 1024).toFixed(2) : 'N/A'
   });
 
   return {
@@ -85,6 +123,7 @@ import { analyzeForPhishing } from "../combined-detector"
 
 // Wrapper function to run the main phishing classification with performance tracking and send results
 async function runMainClassificationWithPerformanceTracking() {
+  console.log("[PHISHING-DETECTOR] Starting main classification with performance tracking");
   logger.log("Starting main classification with performance tracking");
   
   // Get DOM features for the main classification
@@ -99,8 +138,13 @@ async function runMainClassificationWithPerformanceTracking() {
   try {
     // Create a wrapper function that ensures we measure the complete classification process
     const classificationFunction = async () => {
+      console.log("[PHISHING-DETECTOR] Starting complete phishing analysis");
       logger.log("Starting complete phishing analysis");
       const result = await analyzeForPhishing(window.location.href, domFeatures);
+      console.log("[PHISHING-DETECTOR] Complete phishing analysis finished", { 
+        isPhishing: result.isPhishing, 
+        confidence: result.confidence 
+      });
       logger.log("Complete phishing analysis finished", { 
         isPhishing: result.isPhishing, 
         confidence: result.confidence 
@@ -108,8 +152,10 @@ async function runMainClassificationWithPerformanceTracking() {
       return result;
     };
 
+    console.log("[PHISHING-DETECTOR] About to call measureHeapAndTime");
     // Run the main classification function with performance tracking
     const measurementResult = await measureHeapAndTime(classificationFunction);
+    console.log("[PHISHING-DETECTOR] measureHeapAndTime completed", measurementResult);
     
     const data = {
       'url': window.location.href,
@@ -119,17 +165,20 @@ async function runMainClassificationWithPerformanceTracking() {
       'heapChangeBytes': measurementResult.heapChangeBytes
     };
 
+    console.log("[PHISHING-DETECTOR] About to send TEST message", data);
     chrome.runtime.sendMessage({
       action: 'TEST', // send a message to the background with the `data` object
       data: data,
     });
 
+    console.log("[PHISHING-DETECTOR] TEST message sent successfully");
     logger.log("Main classification performance data sent", { 
       data,
       analysisResult: measurementResult.functionOutput 
     });
   } catch (error) {
-    logger.error("Error in main classification performance tracking", { error: error.message });
+    console.error("[PHISHING-DETECTOR] ERROR in main classification:", error);
+    logger.error("Error in main classification performance tracking", { error: error.message, stack: error.stack });
   }
 }
 
@@ -366,12 +415,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Initialize when page is loaded
 window.addEventListener("load", () => {
+  console.log("[PHISHING-DETECTOR] Page load event fired");
   logger.log("Page load event fired");
   
   // Make sure page is fully loaded before analysis
   // Use readiness helper to ensure DOM and title are fully available
   setTimeout(async () => {
     try {
+      console.log("[PHISHING-DETECTOR] Running performance tracking on load");
       // Wait for page to be completely ready
       await ensurePageReadiness();
       notifyPageReady();
@@ -396,9 +447,11 @@ window.addEventListener("load", () => {
 
 // Fallback - if load event already fired, run immediately
 if (document.readyState === "complete") {
+  console.log("[PHISHING-DETECTOR] Document already complete on script load");
   logger.log("Document already complete on script load");
   setTimeout(async () => {
     try {
+      console.log("[PHISHING-DETECTOR] Running fallback performance tracking");
       // Still use readiness helper to ensure title and dynamic content is ready
       await ensurePageReadiness();
       notifyPageReady();

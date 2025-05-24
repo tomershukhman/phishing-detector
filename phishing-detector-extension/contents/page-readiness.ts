@@ -1,4 +1,6 @@
 // Function to ensure the page is fully loaded before extracting features
+import { contentLogger as logger } from "../lib/logger"
+
 export function ensurePageReadiness(): Promise<void> {
   return new Promise(resolve => {
     const log = (msg: string) => logger.log(`[PHISHING-DETECTOR] ${msg}`);
