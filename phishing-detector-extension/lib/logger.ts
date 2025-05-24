@@ -26,8 +26,8 @@ const createLogger = (options: LoggerOptions) => {
 
   // Helper function to send logs to background if in a content script context
   const sendToBackground = (level: string, message: string, data?: any) => {
-    // Only attempt to forward logs from content scripts (DOM component)
-    if (component === 'DOM' && typeof chrome !== 'undefined' && chrome.runtime) {
+    // Forward logs from content scripts (DOM and CONTENT components)
+    if ((component === 'DOM' || component === 'CONTENT') && typeof chrome !== 'undefined' && chrome.runtime) {
       try {
         chrome.runtime.sendMessage({
           action: "forwardLog",
@@ -51,9 +51,9 @@ const createLogger = (options: LoggerOptions) => {
       if (minLevel <= LogLevel.DEBUG) {
         const formattedMessage = `${prefix}[${new Date().toISOString()}] ${message}`;
         if (data) {
-          console.debug(`%c${formattedMessage}`, data);
+          console.debug(`%c${formattedMessage}`, 'color: #666; font-weight: bold;', data);
         } else {
-          console.debug(`%c${formattedMessage}`,);
+          console.debug(`%c${formattedMessage}`, 'color: #666; font-weight: bold;');
         }
         sendToBackground('DEBUG', message, data);
       }
@@ -63,9 +63,9 @@ const createLogger = (options: LoggerOptions) => {
       if (minLevel <= LogLevel.INFO) {
         const formattedMessage = `${prefix}[${new Date().toISOString()}] ${message}`;
         if (data) {
-          console.log(`%c${formattedMessage}`, data);
+          console.log(`%c${formattedMessage}`, 'color: #2196F3; font-weight: bold;', data);
         } else {
-          console.log(`%c${formattedMessage}`);
+          console.log(`%c${formattedMessage}`, 'color: #2196F3; font-weight: bold;');
         }
         sendToBackground('INFO', message, data);
       }
@@ -75,9 +75,9 @@ const createLogger = (options: LoggerOptions) => {
       if (minLevel <= LogLevel.WARN) {
         const formattedMessage = `${prefix}[${new Date().toISOString()}] ${message}`;
         if (data) {
-          console.warn(`%c${formattedMessage}`, data);
+          console.warn(`%c${formattedMessage}`, 'color: #FF9800; font-weight: bold;', data);
         } else {
-          console.warn(`%c${formattedMessage}`);
+          console.warn(`%c${formattedMessage}`, 'color: #FF9800; font-weight: bold;');
         }
         sendToBackground('WARN', message, data);
       }
@@ -87,9 +87,9 @@ const createLogger = (options: LoggerOptions) => {
       if (minLevel <= LogLevel.ERROR) {
         const formattedMessage = `${prefix}[${new Date().toISOString()}] ${message}`;
         if (data) {
-          console.error(`%c${formattedMessage}`, data);
+          console.error(`%c${formattedMessage}`, 'color: #F44336; font-weight: bold;', data);
         } else {
-          console.error(`%c${formattedMessage}`);
+          console.error(`%c${formattedMessage}`, 'color: #F44336; font-weight: bold;');
         }
         sendToBackground('ERROR', message, data);
       }

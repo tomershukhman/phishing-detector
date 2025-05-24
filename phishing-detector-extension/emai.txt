@@ -1,0 +1,135 @@
+Please make the following code modification within the extension:
+
+ 
+
+in content script -
+
+i've defined two functions - 
+
+1) measureHeapAndTime - a JS wrapper function that measures both time and heap size 
+
+2) wrapping the classification function and sending the object back to the background.
+
+ 
+
+async function measureHeapAndTime(fn, ...args) {
+
+  if (!window.performance || !performance.memory) {
+
+      throw new Error("performance.memory API not available. Must be run in Chrome Extension context.");
+
+  }
+
+  // Record initial heap stats
+
+  const startHeap = performance.memory.usedJSHeapSize;
+
+  const startTime = performance.now();
+
+ 
+
+  // Run the function (supports async)
+
+  let functionOutput, error = null;
+
+  try {
+
+    functionOutput = await fn(...args);
+
+  } catch (e) {
+
+      error = e;
+
+  }
+
+ 
+
+  const endTime = performance.now();
+
+  const endHeap = performance.memory.usedJSHeapSize;
+
+ 
+
+  const heapDelta = endHeap - startHeap;
+
+  const timeMs = endTime - startTime;
+
+ 
+
+  return {
+
+      functionOutput,
+
+      error,
+
+      heapChangeBytes: heapDelta,
+
+      timeMs,
+
+      heapBefore: startHeap,
+
+      heapAfter: endHeap
+
+  };
+
+}
+
+ 
+
+    measureHeapAndTime(YOUR_CLASSIFICAION_FUNCTION_NAME).then((result) => {
+
+      data = {
+
+      'url': window.location.href,
+
+      'groupId': 28 ,
+
+      'isPhishing' : result.functionOutput.isPhishing,
+
+      'responseTimeMs' : result.timeMs,
+
+      'heapChangeBytes' : result.heapChangeBytes
+
+      }
+
+      chrome.runtime.sendMessage({
+
+        action: 'TEST', // send a message to the background with the `data` object
+
+        data: data,
+
+      });
+
+    });
+
+ 
+
+in background -
+
+i've defined  one function- 
+
+1) Handle TEST message - receiving the data object from content script and send it over HTTP
+
+ 
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
+if (message.action === 'TEST') {
+
+    const data = message.data;
+
+    fetch('http://127.0.0.1:6543/verdict',{
+
+      method : 'POST',
+
+      body : JSON.stringify(data)
+
+    })
+
+  }
+
+});
+
+ 
+
+The essence is - create a wrapper function that both times you core phishing detection function and output the object to Remote address given. the implementation can vary as long as you keep the essence.

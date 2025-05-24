@@ -1,4 +1,5 @@
 // Content script that gets injected into pages
+// NOTE: Content script logs are automatically forwarded to the background console for better visibility
 import type { PlasmoCSConfig } from "plasmo"
 import { analyzeDom } from "../dom-detector"
 import { ensurePageReadiness } from "./page-readiness"
@@ -23,10 +24,7 @@ let analysisCompleted = false;
 let analysisTimestamp = 0;
 let analysisResult = null;
 
-// Helper function for logging
-function logMessage(message, data = {}) {
-  logger.log(message, data);
-}
+
 
 // Notify background script that the page has loaded and is ready for analysis
 function notifyPageReady() {
@@ -34,22 +32,22 @@ function notifyPageReady() {
   
   // Only notify for http/https URLs
   if (url.startsWith('http')) {
-    logMessage("Notifying background script that page is ready for analysis", { url });
+    logger.log("Notifying background script that page is ready for analysis", { url });
     
     // Analyze DOM proactively with error handling
     let domFeatures = null;
     try {
       domFeatures = analyzeDom();
-      logMessage("DOM analysis completed successfully", { featureCount: domFeatures?.features?.length || 0 });
+      logger.log("DOM analysis completed successfully", { featureCount: domFeatures?.features?.length || 0 });
     } catch (error) {
-      logMessage("Error during DOM analysis, will retry", { error: error.message });
+      logger.log("Error during DOM analysis, will retry", { error: error.message });
       // If DOM analysis fails, we'll retry once more after a short delay
       setTimeout(() => {
         try {
           domFeatures = analyzeDom();
-          logMessage("DOM analysis retry succeeded", { featureCount: domFeatures?.features?.length || 0 });
+          logger.log("DOM analysis retry succeeded", { featureCount: domFeatures?.features?.length || 0 });
         } catch (retryError) {
-          logMessage("DOM analysis retry failed", { error: retryError.message });
+          logger.log("DOM analysis retry failed", { error: retryError.message });
         }
       }, 1000);
     }
@@ -65,7 +63,7 @@ function notifyPageReady() {
         domFeatures: domFeatures
       }, response => {
         if (chrome.runtime.lastError) {
-          logMessage("Error sending pageReady message", { 
+          logger.log("Error sending pageReady message", { 
             error: chrome.runtime.lastError.message,
             retry: retryCount
           });
@@ -75,9 +73,9 @@ function notifyPageReady() {
             setTimeout(attemptNotify, 2000);
           }
         } else if (!response || !response.success) {
-          logMessage("Background script returned error", { response });
+          logger.log("Background script returned error", { response });
         } else {
-          logMessage("Background script notified successfully", { response });
+          logger.log("Background script notified successfully", { response });
           
           if (response.status === "completed" && response.result) {
             // We already have analysis results, process them immediately
@@ -99,7 +97,7 @@ function processAnalysisResults(result) {
   analysisCompleted = true;
   analysisTimestamp = Date.now();
   
-  logMessage("Received analysis results", { 
+  logger.log("Received analysis results", { 
     isPhishing: result.isPhishing,
     confidence: result.confidence,
     url: result.url
@@ -114,7 +112,7 @@ function processAnalysisResults(result) {
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "analysisCompleted" && message.result) {
-    logMessage("Received analysis results from background", { 
+    logger.log("Received analysis results from background", { 
       result: message.result
     });
     
@@ -123,20 +121,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
   // Handle request to analyze DOM
   if (message.action === "analyzeDom") {
-    logMessage("Received request to analyze DOM");
+    logger.log("Received request to analyze DOM");
     
     // Perform DOM analysis
     const domFeatures = analyzeDom();
     
     // Return the analysis results
-    logMessage("Sending DOM analysis results", { features: domFeatures });
+    logger.log("Sending DOM analysis results", { features: domFeatures });
     sendResponse(domFeatures);
     return true; // Will respond asynchronously
   }
   
   // Handle request for DOM features
   if (message.action === "getDomFeatures") {
-    logMessage("Received request for DOM features");
+    logger.log("Received request for DOM features");
     
     try {
       // Perform DOM analysis with timeout protection
@@ -146,15 +144,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       
       const analysisPromise = new Promise(resolve => {
         try {
-          logMessage("Starting DOM feature extraction");
+          logger.log("Starting DOM feature extraction");
           const domFeatures = analyzeDom();
-          logMessage("DOM feature extraction completed successfully", {
+          logger.log("DOM feature extraction completed successfully", {
             featureCount: domFeatures?.features?.length || 0,
             suspiciousScore: domFeatures?.suspiciousScore || 0
           });
           resolve(domFeatures);
         } catch (error) {
-          logMessage("Error in DOM analysis, trying fallback approach", { error: error.message });
+          logger.log("Error in DOM analysis, trying fallback approach", { error: error.message });
           // Fallback to a more basic analysis if the full one fails
           try {
             // Create a minimal set of DOM features to avoid complete failure
@@ -168,7 +166,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
               suspiciousScore: document.querySelector('input[type="password"]') ? 0.6 : 0.3,
               timestamp: Date.now()
             };
-            logMessage("Using fallback DOM features", { 
+            logger.log("Using fallback DOM features", { 
               features: fallbackFeatures.features.length,
               hasPasswordField: !!document.querySelector('input[type="password"]'),
               hasLoginForm: !!document.querySelector('form')
@@ -176,7 +174,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             resolve(fallbackFeatures);
           } catch (fallbackError) {
             // If even the fallback fails, resolve with an empty structure
-            logMessage("Fallback analysis also failed", { error: fallbackError.message });
+            logger.log("Fallback analysis also failed", { error: fallbackError.message });
             resolve({
               url: window.location.href,
               features: [{ name: "analysisError", value: true, weight: 0, impact: 0 }],
@@ -191,7 +189,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       Promise.race([analysisPromise, timeoutPromise])
         .then((domFeatures: any) => {
           if (!domFeatures) {
-            logMessage("Analysis promise resolved but didn't return any DOM features, using error fallback");
+            logger.log("Analysis promise resolved but didn't return any DOM features, using error fallback");
             domFeatures = {
               url: window.location.href,
               features: [{ name: "emptyResultError", value: true, weight: 0, impact: 0 }],
@@ -200,7 +198,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             };
           }
           
-          logMessage("Sending DOM features", { 
+          logger.log("Sending DOM features", { 
             featureCount: domFeatures?.features?.length || 0,
             score: domFeatures?.suspiciousScore || 0,
             url: domFeatures?.url
@@ -212,7 +210,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           });
         })
         .catch((error) => {
-          logMessage("DOM analysis failed or timed out", { error: error.message });
+          logger.log("DOM analysis failed or timed out", { error: error.message });
           // Send a minimal response even on failure
           const errorDomFeatures = {
             url: window.location.href,
@@ -221,7 +219,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             timestamp: Date.now()
           };
           
-          logMessage("Sending minimal error DOM features");
+          logger.log("Sending minimal error DOM features");
           sendResponse({
             success: true,
             domFeatures: errorDomFeatures
@@ -231,7 +229,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return true; // Will respond asynchronously
     } catch (error) {
       // Final fallback if everything else fails
-      logMessage("Critical error in getDomFeatures handler", { error: error.message });
+      logger.log("Critical error in getDomFeatures handler", { error: error.message });
       sendResponse({
         success: true,
         domFeatures: {
@@ -247,7 +245,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
   // Handle request for analysis status
   if (message.action === "getAnalysisStatus") {
-    logMessage("Received request for analysis status");
+    logger.log("Received request for analysis status");
     sendResponse({
       completed: analysisCompleted,
       timestamp: analysisTimestamp,
@@ -261,7 +259,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Initialize when page is loaded
 window.addEventListener("load", () => {
-  logMessage("Page load event fired");
+  logger.log("Page load event fired");
   
   // Make sure page is fully loaded before analysis
   // Use readiness helper to ensure DOM and title are fully available
@@ -271,14 +269,14 @@ window.addEventListener("load", () => {
       await ensurePageReadiness();
       notifyPageReady();
     } catch (error) {
-      logMessage("Error in page readiness or analysis", { error: error.message });
+      logger.log("Error in page readiness or analysis", { error: error.message });
       // Retry once more after a delay if it fails
       setTimeout(async () => {
         try {
           await ensurePageReadiness();
           notifyPageReady();
         } catch (retryError) {
-          logMessage("Retry also failed", { error: retryError.message });
+          logger.log("Retry also failed", { error: retryError.message });
         }
       }, 3000);
     }
@@ -287,21 +285,21 @@ window.addEventListener("load", () => {
 
 // Fallback - if load event already fired, run immediately
 if (document.readyState === "complete") {
-  logMessage("Document already complete on script load");
+  logger.log("Document already complete on script load");
   setTimeout(async () => {
     try {
       // Still use readiness helper to ensure title and dynamic content is ready
       await ensurePageReadiness();
       notifyPageReady();
     } catch (error) {
-      logMessage("Error in page readiness or analysis (fallback)", { error: error.message });
+      logger.log("Error in page readiness or analysis (fallback)", { error: error.message });
       // Retry once more after a delay if it fails
       setTimeout(async () => {
         try {
           await ensurePageReadiness();
           notifyPageReady();
         } catch (retryError) {
-          logMessage("Retry also failed (fallback)", { error: retryError.message });
+          logger.log("Retry also failed (fallback)", { error: retryError.message });
         }
       }, 3000);
     }
