@@ -26,6 +26,7 @@ export interface PhishingAnalysisResult {
 
 // Main function to analyze a URL for phishing
 export async function analyzeForPhishing(url: string, domFeatures?: DomFeatures): Promise<PhishingAnalysisResult> {
+  const startTime = performance.now();
   logger.log("ANALYZING URL FOR PHISHING", url);
 
   // 1. Analyze URL using ML model
@@ -36,8 +37,12 @@ export async function analyzeForPhishing(url: string, domFeatures?: DomFeatures)
   const phishingProbability = urlAnalysis.phishingProbability;
   const features = urlAnalysis.features;
 
+  logger.log("URL analysis completed", { timeMs: performance.now() - startTime });
+
   // Get feature importance analysis
   const featureImportance = detector.getFeatureImportance(url);
+
+  logger.log("Feature importance analysis completed", { timeMs: performance.now() - startTime });
 
   // Get top 5 contributing features
   const topFeatures = featureImportance
@@ -138,6 +143,9 @@ export async function analyzeForPhishing(url: string, domFeatures?: DomFeatures)
     autoAnalyzed: false,
     calculationDetails
   };
+
+  const totalTime = performance.now() - startTime;
+  logger.log("TOTAL ANALYSIS TIME", { totalTimeMs: totalTime });
 
   return result;
 }

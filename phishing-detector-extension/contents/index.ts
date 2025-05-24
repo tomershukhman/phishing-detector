@@ -6,6 +6,7 @@ import type { PlasmoCSConfig } from "plasmo"
 import { analyzeDom } from "../dom-detector"
 import { ensurePageReadiness } from "./page-readiness"
 import { contentLogger as logger } from "../lib/logger"
+import { analyzeForPhishing } from "../combined-detector"
 
 console.log("[PHISHING-DETECTOR] Content script imports loaded");
 
@@ -85,11 +86,14 @@ async function measureHeapAndTime(fn, ...args) {
   // Run the function (supports async)
   let functionOutput, error = null;
   try {
-    logger.log("Executing measured function...");
+    logger.log("Executing measured function...", { startTime });
+    const executionStart = performance.now();
     functionOutput = await fn(...args);
+    const executionEnd = performance.now();
     logger.log("Function execution completed", {
       hasResult: !!functionOutput,
-      resultType: typeof functionOutput
+      resultType: typeof functionOutput,
+      executionTime: executionEnd - executionStart
     });
   } catch (e) {
     error = e;
@@ -119,29 +123,32 @@ async function measureHeapAndTime(fn, ...args) {
   };
 }
 
-// Import the main classification function
-import { analyzeForPhishing } from "../combined-detector"
-
 // Wrapper function to run the main phishing classification with performance tracking and send results
 async function runMainClassificationWithPerformanceTracking() {
   console.log("[PHISHING-DETECTOR] Starting main classification with performance tracking");
   logger.log("Starting main classification with performance tracking");
   
-  // Get DOM features for the main classification
-  let domFeatures = null;
-  try {
-    domFeatures = analyzeDom();
-    logger.log("DOM analysis completed for main classification", { featureCount: domFeatures?.features?.length || 0 });
-  } catch (error) {
-    logger.log("Error during DOM analysis for main classification", { error: error.message });
+  // Create a complete analysis function that includes DOM extraction
+  async function completePhishingAnalysis(url: string) {
+    // Extract DOM features as part of the complete analysis
+    let domFeatures = null;
+    try {
+      domFeatures = analyzeDom();
+      logger.log("DOM analysis completed within measurement", { featureCount: domFeatures?.features?.length || 0 });
+    } catch (error) {
+      logger.log("Error during DOM analysis within measurement", { error: error.message });
+    }
+    
+    // Now run the combined analysis with the extracted DOM features
+    return await analyzeForPhishing(url, domFeatures);
   }
 
   try {
-    console.log("[PHISHING-DETECTOR] About to call measureHeapAndTime");
-    logger.log("Starting complete phishing analysis");
+    console.log("[PHISHING-DETECTOR] About to call measureHeapAndTime for complete analysis");
+    logger.log("Starting complete phishing analysis including DOM extraction");
     
-    // Run the main classification function with performance tracking - measuring ONLY analyzeForPhishing
-    const measurementResult = await measureHeapAndTime(analyzeForPhishing, window.location.href, domFeatures);
+    // Run the complete analysis function with performance tracking - measuring EVERYTHING
+    const measurementResult = await measureHeapAndTime(completePhishingAnalysis, window.location.href);
     
     console.log("[PHISHING-DETECTOR] measureHeapAndTime completed", measurementResult);
     logger.log("Complete phishing analysis finished", { 
