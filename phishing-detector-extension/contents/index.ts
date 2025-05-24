@@ -189,23 +189,8 @@ function notifyPageReady() {
   if (url.startsWith('http')) {
     logger.log("Notifying background script that page is ready for analysis", { url });
     
-    // Analyze DOM proactively with error handling
-    let domFeatures = null;
-    try {
-      domFeatures = analyzeDom();
-      logger.log("DOM analysis completed successfully", { featureCount: domFeatures?.features?.length || 0 });
-    } catch (error) {
-      logger.log("Error during DOM analysis, will retry", { error: error.message });
-      // If DOM analysis fails, we'll retry once more after a short delay
-      setTimeout(() => {
-        try {
-          domFeatures = analyzeDom();
-          logger.log("DOM analysis retry succeeded", { featureCount: domFeatures?.features?.length || 0 });
-        } catch (retryError) {
-          logger.log("DOM analysis retry failed", { error: retryError.message });
-        }
-      }, 1000);
-    }
+    // DON'T analyze DOM here - we'll do it in the performance measurement
+    // This ensures we measure the complete analysis time
     
     // Try to notify the background script with retries
     let retryCount = 0;
@@ -215,7 +200,7 @@ function notifyPageReady() {
       chrome.runtime.sendMessage({
         action: "pageReady",
         url: url,
-        domFeatures: domFeatures
+        domFeatures: null // Don't provide DOM features here
       }, response => {
         if (chrome.runtime.lastError) {
           logger.log("Error sending pageReady message", { 
